@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    form {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    input[type="range"] {
+      width: 100%;
+    }
+
+    .checkbox-group, .radio-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .submit-btn {
+      background: #007BFF;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .submit-btn:hover {
+      background: #0056b3;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+<form id="registrationForm">
+  <h2>Student Registration - Created by Eileen Dover</h2>
+
+  <label for="fullname">Full Name</label>
+  <input type="text" id="fullname" name="fullname" required>
+
+  <label for="email">Email Address</label>
+  <input type="email" id="email" name="email" required>
+
+  <label for="password">Create Password</label>
+  <input type="password" id="password" name="password" minlength="6" required>
+
+  <label for="dob">Date of Birth</label>
+  <input type="date" id="dob" name="dob" required>
+
+  <label for="phone">Phone Number</label>
+  <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+  <label for="age">Age</label>
+  <input type="number" id="age" name="age" min="10" max="100" required>
+
+  <label for="gender">Gender</label>
+  <div class="radio-group">
+    <label><input type="radio" name="gender" value="Male" required> Male</label>
+    <label><input type="radio" name="gender" value="Female"> Female</label>
+  </div>
+
+  <label for="address">Address</label>
+  <textarea id="address" name="address" rows="3" required></textarea>
+
+  <label for="college">College Name</label>
+  <input type="text" id="college" name="college" required>
+
+  <label for="course">Course</label>
+  <input type="text" id="course" name="course" required>
+
+  <label for="skills">Rate Your HTML Skills (1-10)</label>
+  <input type="range" id="skills" name="skills" min="1" max="10">
+
+  <label>Hobbies</label>
+  <div class="checkbox-group">
+    <label><input type="checkbox" name="hobbies" value="Reading"> Reading</label>
+    <label><input type="checkbox" name="hobbies" value="Gaming"> Gaming</label>
+    <label><input type="checkbox" name="hobbies" value="Music"> Music</label>
+  </div>
+
+  <button type="submit" class="submit-btn">Register Now</button>
+  <p id="errorMessage" class="error"></p>
+</form>
+
+<script>
+  const form = document.getElementById('registrationForm');
+  const errorMessage = document.getElementById('errorMessage');
+
+  form.addEventListener('submit', function(event) {
+    errorMessage.textContent = '';
+
+    const phone = document.getElementById('phone').value;
+    const phonePattern = /^[0-9]{10}$/;
+
+    if (!phonePattern.test(phone)) {
+      errorMessage.textContent = "Phone number must be exactly 10 digits.";
+      event.preventDefault();
+    }
+  });
+</script>
+
+</body>
+</html>
